@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Webpage Title -->
+  <title>귤 팔아요</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- JS -->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+  <!-- style -->
+  <style type="text/css">
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .top_image {
+      width: 500px;
+      height: 300px;
+      background-image: url("http://www.korea.kr/newsWeb/resources/temp/images/000009/%EA%B7%A4_%EB%B3%B8%EB%AC%B8.jpg");
+      background-position: center;
+    }
+
+    .title-price {
+      text-align: left;
+      width: 500px;
+      /*margin: 10px auto 10px auto;*/
+    }
+
+    .title {
+      font-size: x-large;
+    }
+
+    .discription {
+      width: 500px;
+      margin: 10px auto 10px auto;
+    }
+
+    .input {
+      width: 500px;
+    }
+
+
+  </style>
+
+</head>
+<body>
+  <div class="wrap">
+    <div class="top_image">
+    </div>
+    <div class="title-price">
+      <span class="title">
+        맛있는 귤 팔아요
+      </span>
+      <span class="price">
+        20,000원/Box        
+      </span>      
+    </div>
+    <div class="discription">
+      한여름 대세로 떠오른 귤! ‘당도선별 하우스감귤’ 40% 할인행사 귤, 여름 대세 과일로 떴다!
+    </div>
+    <div class="input-group mb-3 input">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+      </div>
+      <input type="text" class="form-control" aria-describedby="basic-addon1">
+    </div>
+    <div class="order input">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">수량</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>--수량을 선택하세요--</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+    </div>
+    <div class="input-group mb-3 input">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">주소</span>
+      </div>
+      <input type="text" class="form-control" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3 input">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">전화번호</span>
+      </div>
+      <input type="text" class="form-control" aria-describedby="basic-addon1">
+    </div>
+    <div class="submit_button">
+      <button type="button" class="btn btn-primary">주문하기</button>
+    </div>
+  </div>
+</body>
+</html>
