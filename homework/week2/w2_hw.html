@@ -93,9 +93,27 @@
   </style>
 
   <script type="text/javascript">
-  function order_ver(){
+    function order_ver(){
+      let name_txt = $('#name-input').val();
+      let quantity_txt = $('#quantity-input').val();
+      let adress_txt = $('#adress-input').val();
+      let phone_txt = $('#phone-input').val();
 
-  }
+      if( name_txt === '' || quantity_txt === '--수량을 선택하세요--' || adress_txt === '' || phone_txt === ''){
+        alert('모든 칸을 입력해주세요');
+        if( name_txt === ''){
+          $('#name-input').focus();
+        } else if( quantity_txt === '--수량을 선택하세요--' ){
+          $('#quantity-input').focus();
+        } else if( adress_txt === '' ){
+          $('#adress-input').focus();
+        } else if( phone_txt === '' ){
+          $('#phone-input').focus();
+        }
+      } else {
+        alert('주문이 완료되었습니다.');
+      }
+    }
 
   </script>
 
@@ -113,42 +131,34 @@
           20,000원/Box        
         </span>      
       </div>
-      <div id='name-input'>
-        <div class="input-group mb-3 input">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">주문자 이름</span>
-          </div>
-          <input type="text" class="form-control" aria-describedby="basic-addon1">
+      <div class="input-group mb-3 input">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">주문자 이름</span>
         </div>
+        <input id='name-input' type="text" class="form-control" aria-describedby="basic-addon1">
       </div>
-      <div id="order-input">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputGroupSelect01">수량</label>
-          </div>
-          <select class="custom-select" id="inputGroupSelect01">
-            <option selected>--수량을 선택하세요--</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">수량</label>
         </div>
+        <select id="quantity-input" class="custom-select" id="inputGroupSelect01">
+          <option selected>--수량을 선택하세요--</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
       </div>
-      <div id='adress-input'>
-        <div class="input-group mb-3 input">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">주소</span>
-          </div>
-          <input type="text" class="form-control" aria-describedby="basic-addon1">
+      <div class="input-group mb-3 input">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">주소</span>
         </div>
+        <input id='adress-input' type="text" class="form-control" aria-describedby="basic-addon1">
       </div>
-      <div id='phone-input'>
-        <div class="input-group mb-3 input">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">전화번호</span>
-          </div>
-          <input type="text" class="form-control" aria-describedby="basic-addon1">
+      <div class="input-group mb-3 input">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">전화번호</span>
         </div>
+        <input id='phone-input' type="text" class="form-control" aria-describedby="basic-addon1">
       </div>
       <center>
         <div class="submit-button">
