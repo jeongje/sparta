@@ -98,7 +98,8 @@
       let quantity_txt = $('#quantity-input').val();
       let adress_txt = $('#adress-input').val();
       let phone_txt = $('#phone-input').val();
-
+      let phone_reg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+      let phone_test = phone_reg.test($('#phone-input').val());
 
       if( name_txt === ''){
         $('#name-input').focus();
@@ -112,8 +113,12 @@
       } else if( phone_txt === '' ){
         $('#phone-input').focus();
         alert('핸드폰번호를 입력해주세요.');
-      } else {
-        alert('주문이 완료되었습니다.');
+      } else if( phone_txt != '' ) {
+        if( phone_test ) {
+          alert('주문이 완료되었습니다.');
+        } else {
+          alert('올바른 핸드폰번호를 입력해주세요.');
+        }
       }
     }
 
