@@ -58,6 +58,12 @@
       width: 500px;
     }
 
+    .order {
+      width: 800px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
     .recommend {
       width: 800px;
       margin-top: 20px;
@@ -90,9 +96,6 @@
       size: 800px;
     }
 
-    #order_talbe {
-      display: none;
-    }
 
   </style>
 
@@ -120,11 +123,24 @@
       } else if( phone_txt != '' ) {
         if( phone_test ) {
           alert('주문이 완료되었습니다.');
+          let temp_html = 
+          '<tr>\
+          <td>' + name_txt + '</td>\
+          <td>' + quantity_txt + '</td>\
+          <td>' + adress_txt + '</td>\
+          <td>' + phone_txt + '</td>\
+          </tr>'
+          $('#order-list').append(temp_html);
+          $('#name-input').val('');
+          $('#quantity-input').val('--수량을 선택하세요--');
+          $('#adress-input').val('');
+          $('#phone-input').val('');
         } else {
           alert('올바른 핸드폰번호를 입력해주세요.');
         }
       }
     }
+
 
   </script>
 
@@ -178,22 +194,22 @@
       </center>
     </div>
     
-    <div id='order_talbe'>
-    <div>
-      <h2>주문내역 확인하기</h2>
-    </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">주문자 이름</th>
-          <th scope="col">수량</th>
-          <th scope="col">주소</th>
-          <th scope="col">핸드폰번호</th>
-        </tr>
-      </thead>
-      <tbody id="order_list">
-      </tbody>
-    </table>
+    <div id='order-table' class='order'>
+      <div>
+        <h2>주문내역 확인하기</h2>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">주문자 이름</th>
+            <th scope="col">수량</th>
+            <th scope="col">주소</th>
+            <th scope="col">핸드폰번호</th>
+          </tr>
+        </thead>
+        <tbody id="order-list">
+        </tbody>
+      </table>
     </div>
 
     <div class="recommend">
