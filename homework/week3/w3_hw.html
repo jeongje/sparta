@@ -166,7 +166,7 @@
         success: function(response){
           let orders = response['orders'];
           // console.log(orders);
-          for( i=0; i<orders.length; i++){
+          for(let i=0; i<orders.length; i++){
             make_order_list(
               orders[i]['name'],
               orders[i]['count'],
