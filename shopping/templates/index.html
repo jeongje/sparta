@@ -1,0 +1,344 @@
+<!-- 참고사이트 -->
+<!-- https://www.coupang.com/vp/products/324259079?itemId=1038231082&vendorItemId=5493553880&sourceType=CATEGORY&categoryId=420086&isAddedCart=
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+
+  <!-- Webpage Title -->
+  <title>곰곰 당도선별 제주감귤</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- JS -->   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+  <!-- style -->
+  <style type="text/css">
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;      
+    }
+
+    .top-image {
+      width: 500px;
+      height: 300px;
+      background-image: url("http://www.korea.kr/newsWeb/resources/temp/images/000009/%EA%B7%A4_%EB%B3%B8%EB%AC%B8.jpg");
+      background-position: center;
+    }
+
+    .title-price {
+      text-align: left;
+      width: 500px;
+      margin: 10px auto 10px auto;
+    }
+
+    .title {
+      font-size: xx-large;
+    }
+
+    .input {
+      width: 500px;
+    }
+
+    .order {
+      width: 800px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .recommend {
+      width: 800px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .detail {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      margin-bottom: 50px;
+    }
+
+
+    .table {
+      width: 800px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .table-col1 {
+      background-color: lightgrey;
+      width: 200px;
+    }
+
+    .line {
+      background-color: red;
+      size: 800px;
+    }
+
+
+  </style>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      listing();
+    });
+
+
+    function order_ver(){
+      let name_txt = $('#name-input').val();
+      let quantity_txt = $('#quantity-input').val();
+      let address_txt = $('#address-input').val();
+      let phone_txt = $('#phone-input').val();
+      let phone_reg = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
+      let phone_test = phone_reg.test($('#phone-input').val());
+
+      if( name_txt === ''){
+        $('#name-input').focus();
+        alert('이름을 입력해주세요.');
+      } else if( quantity_txt === '--수량을 선택하세요--' ){
+        $('#quantity-input').focus();
+        alert('수량을 입력해주세요.');
+      } else if( address_txt === '' ){
+        $('#address-input').focus();
+        alert('주소을 입력해주세요.');
+      } else if( phone_txt === '' ){
+        $('#phone-input').focus();
+        alert('핸드폰번호를 입력해주세요.');
+      } else if( phone_txt != '' ) {
+        if( phone_test ) {
+          alert('주문이 완료되었습니다.');
+          let temp_html = 
+          '<tr>\
+          <td>' + name_txt + '</td>\
+          <td>' + quantity_txt + '</td>\
+          <td>' + address_txt + '</td>\
+          <td>' + phone_txt + '</td>\
+          </tr>'
+          $('#order-list').append(temp_html);
+          $('#name-input').val('');
+          $('#quantity-input').val('--수량을 선택하세요--');
+          $('#address-input').val('');
+          $('#phone-input').val('');
+        } else {
+          alert('올바른 핸드폰번호를 입력해주세요.');
+        }
+      }
+    }
+
+    function make_order_list(name, count, address, phone){
+      let temp_html = 
+      '<tr>\
+      <td>' + name + '</td>\
+      <td>' + count + '</td>\
+      <td>' + address + '</td>\
+      <td>' + phone + '</td>\
+      </tr>'
+      $('#order-list').append(temp_html);
+    }
+
+    function posting() {
+      let name_txt = $('#name-input').val();
+      let quantity_txt = $('#quantity-input').val();
+      let address_txt = $('#address-input').val();
+      let phone_txt = $('#phone-input').val();
+
+
+      $.ajax({
+        type: "POST",
+        url: "/order",
+        data: { name_give: name_txt, quantity_give: quantity_txt, address_give: address_txt, phone_give: phone_txt },
+        success: function(response){ // 성공하면
+          if (response['result'] == 'success') {
+            alert('포스팅 성공!');
+            window.location.reload();
+          } else {
+            alert('서버 오류!')
+          }
+        }
+      })
+    }
+
+
+    function listing() {
+      $.ajax({
+        type: "GET",
+        url: "/order",
+        data: {},
+        success: function(response){
+          let orders = response['orders'];
+          // console.log(orders);
+          for(let i=0; i<orders.length; i++){
+            make_order_list(
+              orders[i]['name'],
+              orders[i]['quantity'],
+              orders[i]['address'],
+              orders[i]['phone'],)
+          }
+        }
+      })
+    }
+
+  </script>
+
+</head>
+<body>
+  <div class="container">
+    <div class="intro">
+      <div class="top-image">
+      </div>
+      <div class="title-price">
+        <span class="title">
+          곰곰 당도선별 제주감귤
+        </span>
+        <span class="price">
+          20,000원/Box        
+        </span>      
+      </div>
+      <div class="input-group mb-3 input">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+        </div>
+        <input id='name-input' type="text" class="form-control" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">수량</label>
+        </div>
+        <select id="quantity-input" class="custom-select" id="inputGroupSelect01">
+          <option selected>--수량을 선택하세요--</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="input-group mb-3 input">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">주소</span>
+        </div>
+        <input id='address-input' type="text" class="form-control" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3 input">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">핸드폰번호</span>
+        </div>
+        <input id='phone-input' type="text" class="form-control" aria-describedby="basic-addon1" placeholder="010-0000-0000 형태로 입력해주세요">
+      </div>
+      <center>
+        <div class="submit-button">
+          <button onclick="posting(); order_ver()" type="button" class="btn btn-primary" style="width: 200px;">주문하기</button>
+        </div>
+      </center>
+    </div>
+    
+    <div id='order-table' class='order'>
+      <div>
+        <h2>주문내역 확인하기</h2>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">주문자 이름</th>
+            <th scope="col">수량</th>
+            <th scope="col">주소</th>
+            <th scope="col">핸드폰번호</th>
+          </tr>
+        </thead>
+        <tbody id="order-list">
+        </tbody>
+      </table>
+    </div>
+
+    <div class="recommend">
+      <div class="r-header">
+        <h2>추천 상품</h2>
+      </div>
+      <div class="card-deck" style="margin-top: 20px;">
+        <div class="card">
+          <img src="https://thumbnail13.coupangcdn.com/thumbnails/remote/300x300ex/image/retail/images/97324907140592-1244ab71-96c8-480b-9f60-70b36da58369.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">꿀고구마 1박스</h5>
+            <p class="card-text">10,500원</p>
+            <p class="card-text"><small class="text-muted">(100g당 350원)</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://thumbnail11.coupangcdn.com/thumbnails/remote/300x300ex/image/retail/images/2019/04/03/17/7/89390578-db3a-44e9-94bc-c136c4264699.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">더 진한 플레인 요거트 1800ml</h5>
+            <p class="card-text">6,560원</p>
+            <p class="card-text"><small class="text-muted">(10ml당 36원)</small></p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://thumbnail15.coupangcdn.com/thumbnails/remote/300x300ex/image/retail/images/2018/10/01/10/4/f284c363-102b-475e-b4f6-f293d8ae0550.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">국내산 양파 3kg</h5>
+            <p class="card-text">3,380원</p>
+            <p class="card-text"><small class="text-muted">(100g당 113원)</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="detail">
+      <h2>상품 상세</h2>
+      <img src="https://thumbnail12.coupangcdn.com/thumbnails/remote/q89/image/retail/images/5233555746824-4f5c1d81-c80d-4047-93c5-3a769abc8a95.jpg" style="margin-top: 20px;">
+    </div>
+    <hr>
+    <div class="info">
+      <h5>배송정보</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="table-col1" scope="row">배송비</th>
+            <td>3,000원</td>
+          </tr>
+          <tr>
+            <th class="table-col1" scope="row">배송기간</th>
+            <td>주문 후 1-2일 이내 도착</td>
+          </tr>
+        </tbody>
+      </table>
+      <h5>교환/반품 안내</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th class="table-col1" scope="row">비용</th>
+            <td>5,000원</td>
+          </tr>
+          <tr>
+            <th class="table-col1" scope="row">신청 기준일</th>
+            <td>구매일로부터 30일</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="up-button">
+        <center>
+          <button type="button" class="btn btn-primary" onclick = "location.href = '#'" style="width: 200px; margin-top: 20px;">상단으로</button>
+        </center>
+      </div>
+    </div>
+  </div>
+  <hr>
+</body>
+</html>
